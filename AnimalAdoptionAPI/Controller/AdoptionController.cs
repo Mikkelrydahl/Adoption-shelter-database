@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using AnimalAdoptionAPI.Models;  // Ensure this is added
+using AnimalAdoptionAPI.Models;
 using AnimalAdoptionAPI.Services;
+using AnimalAdoptionAPI.Interfaces;
 
 namespace AnimalAdoptionAPI.Controllers
 {
@@ -8,24 +9,39 @@ namespace AnimalAdoptionAPI.Controllers
     [Route("api/[controller]")]
     public class AdoptionController : ControllerBase
     {
-        private readonly AdoptionService _adoptionService;
+        private readonly IAdoptionService _adoptionService;
 
-        // Constructor that injects the AdoptionService
-        public AdoptionController(AdoptionService adoptionService)
+        public AdoptionController(IAdoptionService adoptionService)
         {
             _adoptionService = adoptionService;
         }
 
-        // GET: api/adoption/animal/{id}
-        [HttpGet("animal/{id}")]
-        public ActionResult<Animals> GetAnimal(int id)
+        // Example: Get all animals
+        [HttpGet("animals")]
+        public IActionResult GetAllAnimals()
         {
-            var animal = _adoptionService.GetAnimal(id);
+            var animals = _adoptionService.GetAllAnimals();
+            return Ok(animals);
+        }
+
+        // Example: Get an animal by ID
+        [HttpGet("animals/{id}")]
+        public IActionResult GetAnimalById(int id)
+        {
+            var animal = _adoptionService.GetAnimalById(id);
             if (animal == null)
             {
-                return NotFound();  // Return 404 if not found
+                return NotFound();
             }
-            return Ok(animal);  // Return the animal with 200 OK status
+            return Ok(animal);
+        }
+
+        // Example: Add a new animal (optional)
+        [HttpPost("animals")]
+        public IActionResult AddAnimal([FromBody] Animals animal)
+        {
+            var newAnimal = _adoptionService.AddAnimal(animal);
+            return CreatedAtAction(nameof(GetAnimalById), new { id = newAnimal.AnimalId }, newAnimal);
         }
     }
 }
