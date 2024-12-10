@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+/*using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
 namespace AnimalAdoptionAPI.Models;
@@ -22,4 +22,4 @@ public class MedicalRecord
     {
         return $"id: {RecordId}, name: {Name}, description: {Description}, animal: {Aninal}, breed: {Breed}, age: {Age}";
     }
-}
+}*/

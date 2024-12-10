@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+/*using Microsoft.AspNetCore.Mvc;
 using AnimalAdoptionAPI.Models;
 using AnimalAdoptionAPI.Services;
 using AnimalAdoptionAPI.Interfaces;
@@ -44,4 +44,4 @@ namespace AnimalAdoptionAPI.Controllers
             return CreatedAtAction(nameof(GetAnimalById), new { id = newAnimal.AnimalId }, newAnimal);
         }
     }
-}
+}*/

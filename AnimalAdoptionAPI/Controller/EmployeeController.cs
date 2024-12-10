@@ -1,3 +1,33 @@
+/*using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using AnimalAdoptionAPI.Services;
+using AnimalAdoptionAPI.Interfaces;
+
+namespace AnimalAdoptionAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TestController : ControllerBase
+    {
+        private readonly AnimalAdoptionDbContext _context;
+        private readonly IEmployeeService _employeeService;
+
+        public TestController(AnimalAdoptionDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: api/test
+         [HttpGet("employees")]
+        public IActionResult GetAllEmployees()
+        {
+            var employees = _employeeService.GetAllEmployees();
+            return Ok(employees);
+        }
+    }
+}
+*/
 using Microsoft.AspNetCore.Mvc;
 using AnimalAdoptionAPI.Models;
 using AnimalAdoptionAPI.Services;
@@ -42,7 +72,7 @@ namespace AnimalAdoptionAPI.Controllers
         public IActionResult AddEmployee([FromBody] Employees employee)
         {
             var newEmployee = _employeeService.AddEmployee(employee);
-            return CreatedAtAction(nameof(GetEmployeeById), new { id = newEmployee.EmployeeId }, newEmployee);
+            return CreatedAtAction(nameof(GetEmployeeById), new { id = newEmployee.employee_id }, newEmployee);
         }
 
         // Update an employee
