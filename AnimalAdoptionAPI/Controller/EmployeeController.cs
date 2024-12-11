@@ -69,26 +69,49 @@ namespace AnimalAdoptionAPI.Controllers
 
         // Add a new employee
         [HttpPost("employees")]
-        public IActionResult AddEmployee([FromBody] Employees employee)
+        public IActionResult AddEmployee([FromBody] AddEmployeesDto employeeDto)
         {
-            var newEmployee = _employeeService.AddEmployee(employee);
+            // var employee = new Employees
+            // {
+            //     first_name = employeeDto.first_name,
+            //     last_name = employeeDto.last_name,
+            //     email = employeeDto.email
+            // };
+            var newEmployee = _employeeService.AddEmployee(employeeDto);
             return CreatedAtAction(nameof(GetEmployeeById), new { id = newEmployee.employee_id }, newEmployee);
         }
 
         // Update an employee
-        [HttpPut("employees")]
-        public IActionResult UpdateEmployee([FromBody] Employees employee)
+        [HttpPut("employees/{id}")]
+        public IActionResult UpdateEmployee(int id, [FromBody] UpdateEmployeesDto updateEmployee)
         {
-            var updatedEmployee = _employeeService.UpdateEmployee(employee);
-            return Ok(updatedEmployee);
+            // Call the service to update the employee
+            var updatedEmployee = _employeeService.UpdateEmployee(id, updateEmployee);
+
+            // If the employee is not found
+            if (updatedEmployee == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent(); // Successfully updated, no content to return
         }
 
         // Delete an employee
         [HttpDelete("employees/{id}")]
         public IActionResult DeleteEmployee(int id)
         {
-            _employeeService.DeleteEmployee(id);
-            return NoContent();
+
+            var isDeleted = _employeeService.DeleteEmployee(id);
+
+            if (isDeleted)
+            {
+                return Ok(); // 200 No Content
+            }
+            else
+            {
+                return NotFound(); // 404 Not Found
+            }
         }
 
     }

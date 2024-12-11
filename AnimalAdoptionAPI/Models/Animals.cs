@@ -18,8 +18,4 @@ public class Animals
 
     public int Age { get; set; }
 
-    public override string ToString()
-    {
-        return $"id: {AnimalId}, name: {Name}, breed: {Breed}, species: {Species}, description: {Description}, age: {Age}";
-    }
 }

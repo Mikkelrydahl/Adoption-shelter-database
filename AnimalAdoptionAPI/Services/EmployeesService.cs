@@ -2,6 +2,8 @@ using AnimalAdoptionAPI.Models;
 using AnimalAdoptionAPI.Interfaces;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.HttpResults;
+using AnimalAdoptionAPI.Controllers;
 
 
 namespace AnimalAdoptionAPI.Services
@@ -14,37 +16,65 @@ namespace AnimalAdoptionAPI.Services
         {
             _dbContext = dbContext;
         }
-        
-     public List<Employees> GetAllEmployees()
-    {
-         return _dbContext.Employees.ToList();
-       
-    }
 
-       public Employees GetEmployeeById(int employee_id)
+        public List<Employees> GetAllEmployees()
+        {
+            return _dbContext.Employees.ToList();
+
+        }
+
+        public Employees GetEmployeeById(int employee_id)
         {
             // Code to get an employee by ID
             return new Employees();
         }
 
-        public Employees AddEmployee(Employees employee)
-    {
-        _dbContext.Employees.Add(employee);
-        _dbContext.SaveChanges();
-        
-         return employee;
-    }
-
-        public Employees UpdateEmployee(Employees employee)
+        public Employees AddEmployee(AddEmployeesDto employeeDto)
         {
-            // Code to update an employee
+            // var employeeDto = new AddEmployeesDto();
+            var employee = new Employees
+            {
+                first_name = employeeDto.first_name,
+                last_name = employeeDto.last_name,
+                email = employeeDto.email
+            };
+            _dbContext.Employees.Add(employee);
+            _dbContext.SaveChanges();
+
             return employee;
         }
 
-        public void DeleteEmployee(int id)
+        public Employees UpdateEmployee(int id, UpdateEmployeesDto updateEmployeeDto)
         {
-            // Code to delete an employee
-            
+            var employee = _dbContext.Employees.FirstOrDefault(e => e.employee_id == id);
+
+            if (employee == null)
+            {
+                return null;
+            }
+
+            employee.first_name = updateEmployeeDto.first_name;
+            employee.last_name = updateEmployeeDto.last_name;
+            employee.email = updateEmployeeDto.email;
+
+
+            _dbContext.SaveChanges();
+
+            return employee;
+        }
+
+        public bool DeleteEmployee(int id)
+        {
+            var employee = _dbContext.Employees.FirstOrDefault(e => e.employee_id == id);
+
+            if (employee != null)
+            {
+                _dbContext.Employees.Remove(employee); // Remove the employee from the database
+                _dbContext.SaveChanges(); // Save changes to persist the deletion
+                return true; // Return true to indicate successful deletion
+            }
+
+            return false;
         }
     }
 }

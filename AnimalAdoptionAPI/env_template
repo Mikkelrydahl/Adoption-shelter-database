@@ -1,0 +1,3 @@
+# Database Configuration
+
+CONNECTION_STRING="YourConnectionString"

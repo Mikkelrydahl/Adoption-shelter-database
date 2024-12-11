@@ -3,11 +3,13 @@ using AnimalAdoptionAPI.Services;
 using AnimalAdoptionAPI.Interfaces;
 using AnimalAdoptionAPI;
 using Microsoft.EntityFrameworkCore;
+using DotNetEnv;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("connectionstring");
+Env.Load();
+var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
 builder.Services.AddDbContext<AnimalAdoptionDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -36,6 +38,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapControllers();  
+app.MapControllers();
 
 app.Run();
