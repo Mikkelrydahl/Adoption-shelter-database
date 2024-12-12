@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using AnimalAdoptionAPI.Models;
 
-namespace AnimalAdoptionAPI
+namespace AnimalAdoptionAPI   // MYSQL
 {
     public class AnimalAdoptionDbContext : DbContext
     {

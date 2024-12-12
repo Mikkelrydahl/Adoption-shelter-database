@@ -67,6 +67,10 @@
               "target": "Package",
               "version": "[8.0.2, )"
             },
+            "Neo4j.Driver": {
+              "target": "Package",
+              "version": "[5.27.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"

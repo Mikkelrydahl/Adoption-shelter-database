@@ -94,7 +94,7 @@ namespace AnimalAdoptionAPI.Controllers
                 return NotFound();
             }
 
-            return NoContent(); // Successfully updated, no content to return
+            return Ok(updatedEmployee); // Successfully updated, no content to return
         }
 
         // Delete an employee
