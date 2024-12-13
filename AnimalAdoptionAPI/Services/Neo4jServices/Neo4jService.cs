@@ -1,44 +1,55 @@
 using Neo4j.Driver;
 
-public class Neo4jService
+
+namespace AnimalAdoptionAPI.Neo4JServices 
 {
-    private readonly IDriver _driver;
 
-    public Neo4jService(IDriver driver)
+    public class Neo4jService
     {
-        _driver = driver;
-    }
+        private readonly IDriver _driver;
 
-    public async Task<List<string>> GetAllNodesAsync()
-    {
-        var result = new List<string>();
-        var session = _driver.AsyncSession();
-
-        await using (session)
+        public Neo4jService(IDriver driver)
         {
-            var query = "MATCH (n) RETURN n";
-            var nodes = await session.RunAsync(query);
+            _driver = driver;
+        }
 
-            await foreach (var node in nodes)
+        public async Task<List<string>> GetAllNodesAsync()
+        {
+            var result = new List<string>();
+            var session = _driver.AsyncSession();
+
+            await using (session)
             {
-                result.Add(node["name"].As<string>());
+                var query = "MATCH (n) RETURN n.name AS name";
+                var nodes = await session.RunAsync(query);
+
+               
+                await foreach (var node in nodes)
+                {
+                  string tempResult = node["name"].As<string>();
+
+                    if (tempResult != null)
+                    {
+                        result.Add(tempResult);
+                    }
+                }
             }
+
+            return result;
         }
 
-        return result;
-    }
-
-    public async Task AddNodeAsync(string nodeName)
-    {
-        var session = _driver.AsyncSession();
-        try
+        public async Task AddNodeAsync(string nodeName)
         {
-            var query = "CREATE (n:Node {name: $name})";
-            await session.RunAsync(query, new { name = nodeName });
-        }
-        finally
-        {
-            await session.CloseAsync();
+            var session = _driver.AsyncSession();
+            try
+            {
+                var query = "CREATE (n:Node {name: $name})";
+                await session.RunAsync(query, new { name = nodeName });
+            }
+            finally
+            {
+                await session.CloseAsync();
+            }
         }
     }
 }
