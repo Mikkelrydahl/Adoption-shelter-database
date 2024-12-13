@@ -5,6 +5,7 @@ using AnimalAdoptionAPI;
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
 using Neo4j.Driver;
+using AnimalAdoptionAPI.Neo4JServices;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,7 @@ var driver = GraphDatabase.Driver(
     AuthTokens.Basic(neo4jusername, neo4jpassword)
 );
 
+builder.Services.AddScoped<Neo4jService>();
 builder.Services.AddSingleton(driver);
 
 

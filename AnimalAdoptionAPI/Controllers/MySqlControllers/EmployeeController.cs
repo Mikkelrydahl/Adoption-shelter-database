@@ -71,12 +71,6 @@ namespace AnimalAdoptionAPI.Controllers
         [HttpPost("employees")]
         public IActionResult AddEmployee([FromBody] AddEmployeesDto employeeDto)
         {
-            // var employee = new Employees
-            // {
-            //     first_name = employeeDto.first_name,
-            //     last_name = employeeDto.last_name,
-            //     email = employeeDto.email
-            // };
             var newEmployee = _employeeService.AddEmployee(employeeDto);
             return CreatedAtAction(nameof(GetEmployeeById), new { id = newEmployee.employee_id }, newEmployee);
         }
