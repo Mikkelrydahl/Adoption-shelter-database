@@ -14,6 +14,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="MongoDB.Driver" Version="3.1.0" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="Neo4j.Driver" Version="5.27.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

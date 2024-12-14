@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
 using Neo4j.Driver;
 using AnimalAdoptionAPI.Neo4JServices;
+using MongoDB.Driver;
+using AnimalAdoptionAPI.MongodbServices;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +17,7 @@ Env.Load();
 var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
 builder.Services.AddDbContext<AnimalAdoptionDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+    options.UseMySql(connectionString, Microsoft.EntityFrameworkCore.ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
@@ -32,6 +34,16 @@ var driver = GraphDatabase.Driver(
 
 builder.Services.AddScoped<Neo4jService>();
 builder.Services.AddSingleton(driver);
+
+//MongoDB connection
+var mongodbConnectionstring = Environment.GetEnvironmentVariable("MONGODB_CONNECTION_STRING");
+
+var MongoClient = new MongoClient(mongodbConnectionstring);
+var MongoDatabase = MongoClient.GetDatabase("Animal_Adoption_ShelterDB");
+builder.Services.AddScoped<MongodbService>();
+builder.Services.AddSingleton(MongoDatabase);
+
+
 
 
 
