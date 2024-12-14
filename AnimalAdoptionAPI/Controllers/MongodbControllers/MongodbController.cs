@@ -15,7 +15,7 @@ public class MongodbController : ControllerBase
     }
 
     [HttpGet("GetAllEmployees")]
-    public async Task<IActionResult> GetAllEmployees()
+    public IActionResult GetAllEmployees()
     {
         var result = _mongodbService.GetAllEmployees();
 

@@ -1,3 +1,14 @@
 # Database Configuration
 
+# Connection strings for the databases
+
+#Neo4j
+NEO4J_CONNECTION_STRING="YourConnectionString"
+NEO4JUSERNAME="Neo4j"
+NEO4JPASSWORD="YourPassword" 
+
+#MySQL
 CONNECTION_STRING="YourConnectionString"
+
+#MongoDB
+MONGODB_CONNECTION_STRING = "YourClusterConnectionstring"

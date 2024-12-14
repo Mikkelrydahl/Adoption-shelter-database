@@ -271,3 +271,8 @@ C:\Users\krist\OneDrive\Dokumenter\GitHub\Adoption-shelter-database\AnimalAdopti
 C:\Users\krist\OneDrive\Dokumenter\GitHub\Adoption-shelter-database\AnimalAdoptionAPI\bin\Debug\net8.0\MongoDB.Driver.dll
 C:\Users\krist\OneDrive\Dokumenter\GitHub\Adoption-shelter-database\AnimalAdoptionAPI\bin\Debug\net8.0\SharpCompress.dll
 C:\Users\krist\OneDrive\Dokumenter\GitHub\Adoption-shelter-database\AnimalAdoptionAPI\bin\Debug\net8.0\Snappier.dll
+C:\Users\Bruger\Desktop\System integration eksamen 2024\Adoption-shelter-database\AnimalAdoptionAPI\bin\Debug\net8.0\DnsClient.dll
+C:\Users\Bruger\Desktop\System integration eksamen 2024\Adoption-shelter-database\AnimalAdoptionAPI\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\Bruger\Desktop\System integration eksamen 2024\Adoption-shelter-database\AnimalAdoptionAPI\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\Bruger\Desktop\System integration eksamen 2024\Adoption-shelter-database\AnimalAdoptionAPI\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\Bruger\Desktop\System integration eksamen 2024\Adoption-shelter-database\AnimalAdoptionAPI\bin\Debug\net8.0\Snappier.dll
