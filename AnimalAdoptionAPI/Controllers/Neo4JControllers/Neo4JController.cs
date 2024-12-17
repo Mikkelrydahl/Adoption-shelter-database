@@ -33,5 +33,26 @@ namespace AnimalAdoptionAPI.Neo4JControllers
             return Ok("Node added successfully with label: " + addNodeDto.label + " and name: " + addNodeDto.name);
         }
 
+        [HttpGet("GetNode/{id}")]
+        public async Task<IActionResult> GetNodebyid()
+        {
+            var nodes = await _neo4jService.GetAllNodesAsync();
+            return Ok(nodes);
+        }
+
+        [HttpPut("UpdateNode/{id}")]
+        public async Task<IActionResult> UpdateNode()
+        {
+            var nodes = await _neo4jService.GetAllNodesAsync();
+            return Ok(nodes);
+        }
+
+        [HttpDelete("DeleteNode/{id}")]
+        public async Task<IActionResult> DeleteNodebyid()
+        {
+            var nodes = await _neo4jService.GetAllNodesAsync();
+            return Ok(nodes);
+        }
+
     }
 }

@@ -37,26 +37,34 @@ namespace AnimalAdoptionAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EmployeeController : ControllerBase
+    public class MySQLController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public MySQLController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
         }
 
         // Example: Get all employees
 
-        [HttpGet("employees")]
+        [HttpGet("GetAllEmployees")]
         public IActionResult GetAllEmployees()
         {
             var employees = _employeeService.GetAllEmployees();
             return Ok(employees);
         }
 
+        // Add a new employee
+        [HttpPost("AddEmployee")]
+        public IActionResult AddEmployee([FromBody] AddEmployeesDto employeeDto)
+        {
+            var newEmployee = _employeeService.AddEmployee(employeeDto);
+            return CreatedAtAction(nameof(GetEmployeeById), new { id = newEmployee.employee_id }, newEmployee);
+        }
+
         // Example: Get an employee by ID
-        [HttpGet("employees/{id}")]
+        [HttpGet("GetEmployee/{id}")]
         public IActionResult GetEmployeeById(int id)
         {
             var employee = _employeeService.GetEmployeeById(id);
@@ -67,16 +75,8 @@ namespace AnimalAdoptionAPI.Controllers
             return Ok(employee);
         }
 
-        // Add a new employee
-        [HttpPost("employees")]
-        public IActionResult AddEmployee([FromBody] AddEmployeesDto employeeDto)
-        {
-            var newEmployee = _employeeService.AddEmployee(employeeDto);
-            return CreatedAtAction(nameof(GetEmployeeById), new { id = newEmployee.employee_id }, newEmployee);
-        }
-
         // Update an employee
-        [HttpPut("employees/{id}")]
+        [HttpPut("UpdateEmployee/{id}")]
         public IActionResult UpdateEmployee(int id, [FromBody] UpdateEmployeesDto updateEmployee)
         {
             // Call the service to update the employee
@@ -92,7 +92,7 @@ namespace AnimalAdoptionAPI.Controllers
         }
 
         // Delete an employee
-        [HttpDelete("employees/{id}")]
+        [HttpDelete("DeleteEmployee/{id}")]
         public IActionResult DeleteEmployee(int id)
         {
 
