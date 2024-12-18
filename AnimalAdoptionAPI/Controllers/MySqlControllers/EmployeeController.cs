@@ -70,7 +70,7 @@ namespace AnimalAdoptionAPI.Controllers
             var employee = _employeeService.GetEmployeeById(id);
             if (employee == null)
             {
-                return NotFound();
+                return NotFound("No Employee with id " + id);
             }
             return Ok(employee);
         }

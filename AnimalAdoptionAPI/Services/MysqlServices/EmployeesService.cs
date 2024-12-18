@@ -25,13 +25,11 @@ namespace AnimalAdoptionAPI.Services
 
         public Employees GetEmployeeById(int employee_id)
         {
-            // Code to get an employee by ID
-            return new Employees();
+            return _dbContext.Employees.FirstOrDefault(e => e.employee_id == employee_id);
         }
 
         public Employees AddEmployee(AddEmployeesDto employeeDto)
         {
-            // var employeeDto = new AddEmployeesDto();
             var employee = new Employees
             {
                 first_name = employeeDto.first_name,

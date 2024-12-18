@@ -5,7 +5,7 @@ namespace AnimalAdoptionAPI.Interfaces
 {
     public interface IEmployeeService
     {
-        List<Employees> GetAllEmployees(); // Asynchronous method returning a task of List<Employees>
+        List<Employees> GetAllEmployees(); 
         Employees GetEmployeeById(int id);
         Employees AddEmployee(AddEmployeesDto employeeDto);
         Employees UpdateEmployee(int id, UpdateEmployeesDto updateEmployee);
