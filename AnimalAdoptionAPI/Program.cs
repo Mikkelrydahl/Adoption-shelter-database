@@ -20,6 +20,7 @@ builder.Services.AddDbContext<AnimalAdoptionDbContext>(options =>
     options.UseMySql(connectionString, Microsoft.EntityFrameworkCore.ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IProductsService, ProductService>();
 
 //Neo4j connection string
 var neo4jconnectionstring = Environment.GetEnvironmentVariable("NEO4J_CONNECTION_STRING");

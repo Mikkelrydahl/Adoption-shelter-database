@@ -5,7 +5,7 @@ namespace AnimalAdoptionAPI.Models;
 
 public class Animals
 {
-    [JsonProperty("AnimalId")]
+    [Key]
     public int AnimalId { get; set; }
 
     public string Name { get; set; }

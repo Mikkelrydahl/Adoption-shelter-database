@@ -5,7 +5,7 @@ namespace AnimalAdoptionAPI.Models;
 
 public class MedicalRecord
 {
-    [JsonProperty("RecordId")]
+    [Key]
     public int RecordId { get; set; }
 
     public string Name { get; set; }

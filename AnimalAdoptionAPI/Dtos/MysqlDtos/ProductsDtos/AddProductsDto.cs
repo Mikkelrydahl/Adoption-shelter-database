@@ -3,12 +3,10 @@ using Newtonsoft.Json;
 
 namespace AnimalAdoptionAPI.Models;
 
-public class Products
+public class AddProductsDto
 {
-    [Key]
-    public int id { get; set; }
 
-    public string product_name { get; set; }
+    public string name { get; set; }
 
     public decimal price { get; set; }
 
