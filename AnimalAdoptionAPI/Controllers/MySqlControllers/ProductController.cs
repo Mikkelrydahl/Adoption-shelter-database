@@ -6,7 +6,7 @@ using AnimalAdoptionAPI.Interfaces;
 namespace AnimalAdoptionAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/MySQL")]
     public class MySQLProductController : ControllerBase
     {
         private readonly IProductsService _productsService;
@@ -55,7 +55,7 @@ namespace AnimalAdoptionAPI.Controllers
         }
 
 
-        [HttpDelete("Product/{id}")]
+        [HttpDelete("Products/{id}")]
         public IActionResult DeleteProduct(int id)
         {
 

@@ -9,7 +9,7 @@ using AnimalAdoptionAPI.Neo4jAnimalServices;
 namespace AnimalAdoptionAPI.Neo4JControllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Neo4J")]
     public class Neo4JController : ControllerBase
     {
         private readonly Neo4jService _neo4jService;
@@ -23,14 +23,14 @@ namespace AnimalAdoptionAPI.Neo4JControllers
 
 
 
-        [HttpGet("GetAllNodes")]
+        [HttpGet("Nodes")]
         public async Task<IActionResult> GetAllNodes()
         {
             var nodes = await _neo4jService.GetAllNodesAsync();
             return Ok(nodes);
         }
 
-        [HttpPost("AddNode")]
+        [HttpPost("Nodes")]
         public async Task<IActionResult> AddNode([FromBody] AddNodeDto addNodeDto)
         {
             await _neo4jService.AddNodeAsync(addNodeDto.label, addNodeDto.name);
@@ -38,7 +38,7 @@ namespace AnimalAdoptionAPI.Neo4JControllers
             return Ok("Node added successfully with label: " + addNodeDto.label + " and name: " + addNodeDto.name);
         }
 
-        [HttpPost("Animal")]
+        [HttpPost("Animals")]
         public async Task<IActionResult> AddAnimal([FromBody] AddAnimalNodeDto addAnimalNodeDto)
         {
             // Call the AddAnimal method in AnimalService
@@ -52,21 +52,21 @@ namespace AnimalAdoptionAPI.Neo4JControllers
 
 
 
-        [HttpGet("GetNode/{id}")]
+        [HttpGet("Nodes/{id}")]
         public async Task<IActionResult> GetNodebyid()
         {
             var nodes = await _neo4jService.GetAllNodesAsync();
             return Ok(nodes);
         }
 
-        [HttpPut("UpdateNode/{id}")]
+        [HttpPut("Nodes/{id}")]
         public async Task<IActionResult> UpdateNode()
         {
             var nodes = await _neo4jService.GetAllNodesAsync();
             return Ok(nodes);
         }
 
-        [HttpDelete("DeleteNode/{id}")]
+        [HttpDelete("Nodes/{id}")]
         public async Task<IActionResult> DeleteNodebyid()
         {
             var nodes = await _neo4jService.GetAllNodesAsync();

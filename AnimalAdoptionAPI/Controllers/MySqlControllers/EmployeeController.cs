@@ -5,12 +5,12 @@ using AnimalAdoptionAPI.Interfaces;
 namespace AnimalAdoptionAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class MySQLController : ControllerBase
+    [Route("api/MySQL")]
+    public class MySQLEmployeesController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
 
-        public MySQLController(IEmployeeService employeeService)
+        public MySQLEmployeesController(IEmployeeService employeeService)
         {
             _employeeService = employeeService;
         }
@@ -53,7 +53,7 @@ namespace AnimalAdoptionAPI.Controllers
             return Ok(updatedEmployee);
         }
 
-        [HttpDelete("DeleteEmployee/{id}")]
+        [HttpDelete("Employees/{id}")]
         public IActionResult DeleteEmployee(int id)
         {
 

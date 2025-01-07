@@ -46,7 +46,7 @@ var MongoClient = new MongoClient(mongodbConnectionstring);
 var MongoDatabase = MongoClient.GetDatabase("Animal_Adoption_ShelterDB");
 builder.Services.AddScoped<MongodbService>();
 builder.Services.AddSingleton(MongoDatabase);
-
+builder.Services.AddScoped<MongodbAnimalService>();
 
 
 

@@ -1,9 +1,6 @@
 using AnimalAdoptionAPI.MongodbModels;
 using MongoDB.Driver;
 
-
-
-
 namespace AnimalAdoptionAPI.MongodbServices;
 
 public class MongodbService

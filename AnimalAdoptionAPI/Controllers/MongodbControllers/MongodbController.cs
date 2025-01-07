@@ -4,17 +4,17 @@ using AnimalAdoptionAPI.Models;
 
 
 [ApiController]
-[Route("api/[controller]")]
-public class MongoDBController : ControllerBase
+[Route("api/MongoDB")]
+public class MongoDBEmployeesController : ControllerBase
 {
     private readonly MongodbService _mongodbService;
 
-    public MongoDBController(MongodbService mongodbService)
+    public MongoDBEmployeesController(MongodbService mongodbService)
     {
         _mongodbService = mongodbService;
     }
 
-    [HttpGet("GetAllEmployees")]
+    [HttpGet("Employees")]
     public IActionResult GetAllEmployees()
     {
         var result = _mongodbService.GetAllEmployees();
@@ -22,7 +22,7 @@ public class MongoDBController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("AddEmployee")]
+    [HttpPost("Employees")]
     public IActionResult AddEmployees()
     {
         var result = _mongodbService.GetAllEmployees();
@@ -30,7 +30,7 @@ public class MongoDBController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("GetEmployee/{id}")]
+    [HttpGet("Employees/{id}")]
     public IActionResult GetEmployees()
     {
         var result = _mongodbService.GetAllEmployees();
@@ -38,7 +38,7 @@ public class MongoDBController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPut("UpdateEmployee/{id}")]
+    [HttpPut("Employees/{id}")]
     public IActionResult UpdateEmployees()
     {
         var result = _mongodbService.GetAllEmployees();
@@ -46,7 +46,7 @@ public class MongoDBController : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete("DeleteEmployee/{id}")]
+    [HttpDelete("Employees/{id}")]
     public IActionResult DeleteEmployees()
     {
         var result = _mongodbService.GetAllEmployees();

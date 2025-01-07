@@ -6,7 +6,7 @@ using AnimalAdoptionAPI.Interfaces;
 namespace AnimalAdoptionAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/MySQL")]
     public class MySQLAnimalController : ControllerBase
     {
         private readonly IAnimalService _adoptionService;
