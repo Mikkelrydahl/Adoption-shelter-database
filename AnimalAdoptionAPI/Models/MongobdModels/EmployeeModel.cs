@@ -8,6 +8,7 @@ public class Employees
 {
 
     [BsonId]
+
     public ObjectId _id { get; set; }
 
     public string first_name { get; set; }
