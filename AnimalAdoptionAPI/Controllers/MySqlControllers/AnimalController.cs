@@ -1,4 +1,4 @@
-/*using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using AnimalAdoptionAPI.Models;
 using AnimalAdoptionAPI.Services;
 using AnimalAdoptionAPI.Interfaces;
@@ -7,11 +7,11 @@ namespace AnimalAdoptionAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AdoptionController : ControllerBase
+    public class AnimalController : ControllerBase
     {
-        private readonly IAdoptionService _adoptionService;
+        private readonly IAnimalService _adoptionService;
 
-        public AdoptionController(IAdoptionService adoptionService)
+        public AnimalController(IAnimalService adoptionService)
         {
             _adoptionService = adoptionService;
         }
@@ -41,7 +41,7 @@ namespace AnimalAdoptionAPI.Controllers
         public IActionResult AddAnimal([FromBody] Animals animal)
         {
             var newAnimal = _adoptionService.AddAnimal(animal);
-            return CreatedAtAction(nameof(GetAnimalById), new { id = newAnimal.AnimalId }, newAnimal);
+            return CreatedAtAction(nameof(GetAnimalById), new { id = newAnimal.id }, newAnimal);
         }
     }
-}*/
+}
