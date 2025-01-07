@@ -21,6 +21,7 @@ builder.Services.AddDbContext<AnimalAdoptionDbContext>(options =>
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IProductsService, ProductService>();
+builder.Services.AddScoped<IAnimalService, AnimalService>();
 
 //Neo4j connection string
 var neo4jconnectionstring = Environment.GetEnvironmentVariable("NEO4J_CONNECTION_STRING");
@@ -53,7 +54,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Register the AdoptionService for dependency injection
-builder.Services.AddSingleton<AdoptionService>();
+builder.Services.AddSingleton<AnimalService>();
 
 // Add controllers to handle API routes (this automatically includes AdoptionController)
 builder.Services.AddControllers();

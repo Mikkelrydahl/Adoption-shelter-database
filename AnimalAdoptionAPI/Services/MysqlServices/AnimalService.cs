@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AnimalAdoptionAPI.Services
 {
-    public class AdoptionService : IAnimalService
+    public class AnimalService : IAnimalService
     {
 
         private List<Animals> _animal = new();

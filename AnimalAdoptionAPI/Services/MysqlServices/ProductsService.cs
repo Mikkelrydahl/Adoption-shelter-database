@@ -68,9 +68,9 @@ namespace AnimalAdoptionAPI.Services
 
             if (product != null)
             {
-                _dbContext.Products.Remove(product); // Remove the product from the database
-                _dbContext.SaveChanges(); // Save changes to persist the deletion
-                return true; // Return true to indicate successful deletion
+                _dbContext.Products.Remove(product);
+                _dbContext.SaveChanges();
+                return true;
             }
 
             return false;

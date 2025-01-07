@@ -11,6 +11,7 @@ namespace AnimalAdoptionAPI   // MYSQL
         }
 
         public required DbSet<Employees> Employees { get; set; }
-        public required DbSet<Products> Products { get; set; } 
+        public required DbSet<Products> Products { get; set; }
+
     }
 }

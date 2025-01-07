@@ -7,11 +7,11 @@ namespace AnimalAdoptionAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MySQLaController : ControllerBase
+    public class MySQLProductController : ControllerBase
     {
         private readonly IProductsService _productsService;
 
-        public MySQLaController(IProductsService productsService)
+        public MySQLProductController(IProductsService productsService)
         {
             _productsService = productsService;
         }
