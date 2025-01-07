@@ -1,15 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using AnimalAdoptionAPI.MongodbServices;
-using AnimalAdoptionAPI.Models;
+using AnimalAdoptionAPI.MongodbModels;
 
 
 [ApiController]
 [Route("api/[controller]")]
-public class MongoDBController : ControllerBase
+public class MongoDBEmployeesController : ControllerBase
 {
     private readonly MongodbService _mongodbService;
 
-    public MongoDBController(MongodbService mongodbService)
+    public MongoDBEmployeesController(MongodbService mongodbService)
     {
         _mongodbService = mongodbService;
     }
