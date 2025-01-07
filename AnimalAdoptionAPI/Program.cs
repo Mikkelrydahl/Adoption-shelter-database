@@ -4,11 +4,12 @@ using AnimalAdoptionAPI.Interfaces;
 using AnimalAdoptionAPI;
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
+using AnimalAdoptionAPI.Services.Mysql;
 using Neo4j.Driver;
 using AnimalAdoptionAPI.Neo4JServices;
 using MongoDB.Driver;
 using AnimalAdoptionAPI.MongodbServices;
-
+using AnimalAdoptionAPI.Neo4jAnimalServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,8 @@ builder.Services.AddDbContext<AnimalAdoptionDbContext>(options =>
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IProductsService, ProductService>();
-builder.Services.AddScoped<IAnimalService, AnimalService>();
+builder.Services.AddScoped<IAnimalService, AnimalAdoptionAPI.Services.Mysql.AnimalService>();
+builder.Services.AddScoped<IAnimalNeo4jService, Neo4jAnimalService>();
 
 //Neo4j connection string
 var neo4jconnectionstring = Environment.GetEnvironmentVariable("NEO4J_CONNECTION_STRING");
@@ -54,7 +56,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Register the AdoptionService for dependency injection
-builder.Services.AddSingleton<AnimalService>();
+builder.Services.AddScoped<AnimalService>();
 
 // Add controllers to handle API routes (this automatically includes AdoptionController)
 builder.Services.AddControllers();

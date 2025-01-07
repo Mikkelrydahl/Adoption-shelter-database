@@ -1,18 +1,33 @@
 using AnimalAdoptionAPI.Models;
 using AnimalAdoptionAPI.Interfaces;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
-namespace AnimalAdoptionAPI.Services
+namespace AnimalAdoptionAPI.Services.Mysql
 {
     public class AnimalService : IAnimalService
     {
+        private readonly AnimalAdoptionDbContext _dbContext;
+
+        public AnimalService(AnimalAdoptionDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         private List<Animals> _animal = new();
 
-        public Task<List<Animals>> GetAllAnimals()
+        public async Task<List<Animals>> GetAllAnimals()
         {
-            // Code to get all animals
-            return Task.FromResult(_animal);
+            try
+            {
+                // Assuming _context is your DbContext (e.g., AnimalDbContext)
+                return await _dbContext.Animals.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error while retrieving animals: {ex.Message}");
+            }
+
         }
 
         public Animals GetAnimalById(int id)

@@ -10,6 +10,10 @@ public class Animal
 
     public string pet_name { get; set; }
 
+    public string breed { get; set; }
+
+    public int species { get; set; }
+
     public int age { get; set; }
 
 }
