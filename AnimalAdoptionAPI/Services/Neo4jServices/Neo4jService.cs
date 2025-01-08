@@ -21,16 +21,37 @@ namespace AnimalAdoptionAPI.Neo4JServices
 
             await using (session)
             {
-                var query = "MATCH (n) RETURN n.name AS name, labels(n) AS labels";
-                var nodes = await session.RunAsync(query);
+                var query = @"
+            MATCH (a:Animal)
+            RETURN a.pet_name AS result, 'Animal' AS type
+            UNION
+            MATCH (a:Animal)
+            RETURN a.name as result, 'Animal' AS type
+            UNION
+            MATCH (e:Employee)
+            RETURN e.first_name AS result, 'Employee' AS type
+            UNION
+            MATCH (c:Category)
+            RETURN c.category_name AS result, 'Category' AS type
+            UNION
+            MATCH (m:MedicalAppointment)
+            RETURN m.appointment_description AS result, 'MedicalAppointment' AS type
+            UNION
+            MATCH (o:Order)
+            RETURN o.email AS result, 'Order' AS type
+            UNION
+            MATCH (p:Product)
+            RETURN p.product_name AS result, 'Product' AS type
+        ";
 
+                var nodes = await session.RunAsync(query);
 
                 await foreach (var node in nodes)
                 {
-                    string tempResult = "" + node["labels"].As<List<string>>()[0];
-                    tempResult += " " + node["name"].As<string>();
+                    // Combine the result and type into a formatted string
+                    string tempResult = $"{node["type"].As<string>()}: {node["result"].As<string>()}";
 
-                    if (tempResult != null)
+                    if (!string.IsNullOrEmpty(tempResult))
                     {
                         result.Add(tempResult);
                     }
